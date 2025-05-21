@@ -1,0 +1,23 @@
+[
+  {
+    "university": "MIT",
+    "program": "PhD in AI",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Robotics",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "Yes"
+  },
+  {
+    "university": "University of Texas",
+    "program": "PhD in Data Science",
+    "funding": "No",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  }
+]
