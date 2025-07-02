@@ -1,22 +1,25 @@
 [
   {
     "university": "MIT",
-    "program": "PhD in AI",
+    "program": "PhD in Electrical Engineering",
+    "location": "Cambridge, MA",
     "funding": "Yes",
     "visa_support": "Yes",
     "gre_required": "No"
   },
   {
-    "university": "Stanford",
-    "program": "PhD in Robotics",
+    "university": "MIT",
+    "program": "PhD in Computer Science",
+    "location": "Cambridge, MA",
     "funding": "Yes",
     "visa_support": "Yes",
-    "gre_required": "Yes"
+    "gre_required": "No"
   },
   {
-    "university": "University of Texas",
-    "program": "PhD in Data Science",
-    "funding": "No",
+    "university": "MIT",
+    "program": "PhD in Artificial Intelligence + Decision Making",
+    "location": "Cambridge, MA",
+    "funding": "Yes",
     "visa_support": "Yes",
     "gre_required": "No"
   }
