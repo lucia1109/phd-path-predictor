@@ -22,5 +22,109 @@
     "funding": "Yes",
     "visa_support": "Yes",
     "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Overview",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Application Checklist",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Application Deadlines",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in The CS Intranet: Resources for Faculty, Staff, and Current Students",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Address",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in Links to",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "Stanford",
+    "program": "PhD in CS Student Resources",
+    "location": "Stanford, CA",
+    "funding": "Yes",
+    "visa_support": "Yes",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of Waterloo",
+    "program": "PhD in S.P. Pasupalak Scholarship in Robotics",
+    "location": "Waterloo, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of British Columbia",
+    "program": "PhD in Facebook",
+    "location": "Vancouver, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of British Columbia",
+    "program": "PhD in X",
+    "location": "Vancouver, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of British Columbia",
+    "program": "PhD in LinkedIn",
+    "location": "Vancouver, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of British Columbia",
+    "program": "PhD in YouTube",
+    "location": "Vancouver, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
+  },
+  {
+    "university": "University of British Columbia",
+    "program": "PhD in Instagram",
+    "location": "Vancouver, Canada",
+    "funding": "Yes",
+    "visa_support": "No",
+    "gre_required": "No"
   }
 ]

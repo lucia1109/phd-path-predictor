@@ -1,52 +1,84 @@
 import streamlit as st
 import json
-import pandas as pd
+from openai import OpenAI
+from groq import Groq
 
-# Load data
+
+# Load dataset
 with open("data/programs.json") as f:
-    data = json.load(f)
+    programs = json.load(f)
 
-df = pd.DataFrame(data)
+# Configure OpenAI
+#client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+client = Groq(api_key=st.secrets["OPENAI_API_KEY"])
 
-st.title("🎓 PhD Path Predictor")
+# Tabs for search and chatbot
+tab1, tab2 = st.tabs(["🔍 Search Programs", "🤖 Chatbot"])
 
-st.markdown("Find PhD programs in the US based on your preferences.")
+# -------------------------
+# Tab 1: Search
+# -------------------------
+with tab1:
+    st.title("PhD Path Predictor - Search 🔍")
 
-# New: Keyword search bar
-keyword = st.text_input("Search by keyword (e.g., AI, Robotics, University name)")
+    # Example filter UI
+    query = st.text_input("Search by keyword:")
+    funding_filter = st.selectbox("Funding?", ["Any", "Yes", "No"])
+    gre_filter = st.selectbox("GRE Required?", ["Any", "Yes", "No"])
 
-# Filters
-funding_filter = st.selectbox("Require Funding?", ["Any", "Yes", "No"])
-visa_filter = st.selectbox("Need Visa Support?", ["Any", "Yes", "No"])
-gre_filter = st.selectbox("Require GRE?", ["Any", "Yes", "No"])
-location_filter = st.text_input("Filter by location (city or state)")
+    results = []
+    for p in programs:
+        if query.lower() in p["program"].lower():
+            if (funding_filter == "Any" or p["funding"] == funding_filter) and \
+               (gre_filter == "Any" or p["gre_required"] == gre_filter):
+                results.append(p)
 
-# Apply filters
-filtered_df = df.copy()
+    st.write(f"Found {len(results)} matching programs")
+    for r in results:
+        st.write(f"**{r['university']}** - {r['program']} ({r['location']})")
+        st.caption(f"Funding: {r['funding']}, GRE: {r['gre_required']}, Visa: {r['visa_support']}")
 
-# Apply keyword filter
-if keyword:
-    filtered_df = filtered_df[
-        filtered_df["program"].str.contains(keyword, case=False) |
-        filtered_df["university"].str.contains(keyword, case=False)
-    ]
+# -------------------------
+# Tab 2: Chatbot
+# -------------------------
+with tab2:
+    st.title("PhD Path Predictor - Assistant 🤖")
 
-# Apply location filter
-if location_filter:
-    filtered_df = filtered_df[
-        filtered_df["location"].str.contains(location_filter, case=False)
-    ]
+    if "messages" not in st.session_state:
+        st.session_state["messages"] = []
 
-# Apply dropdown filters
-if funding_filter != "Any":
-    filtered_df = filtered_df[filtered_df["funding"] == funding_filter]
+    user_input = st.text_input("Ask me about PhD programs:", key="chat_input")
 
-if visa_filter != "Any":
-    filtered_df = filtered_df[filtered_df["visa_support"] == visa_filter]
+    if st.button("Send", key="chat_send") and user_input:
+        st.session_state["messages"].append({"role": "user", "content": user_input})
 
-if gre_filter != "Any":
-    filtered_df = filtered_df[filtered_df["gre_required"] == gre_filter]
+        # Add dataset as context
+        context = "\n".join([
+            f"{p['university']} - {p['program']} ({p['location']}, Funding: {p['funding']}, GRE: {p['gre_required']}, Visa: {p['visa_support']})"
+            for p in programs
+        ])
 
-# Show results
-st.subheader(f"Matching Programs ({len(filtered_df)})")
-st.dataframe(filtered_df.reset_index(drop=True))
+        # Prepare prompt for Groq
+        system_prompt = (
+            "You are a helpful assistant for PhD program advice.\n"
+            f"Here is the dataset of programs:\n{context}\n"
+        )
+
+        # Combine messages for context
+        chat_history = "\n".join([
+            f"{msg['role']}: {msg['content']}" for msg in st.session_state["messages"]
+        ])
+
+        # Query Groq Llama 3.1
+        response = client.chat.completions.create(
+            messages=[{"role": "system", "content": system_prompt + chat_history}],
+            model="llama3-70b-8192"
+        )
+
+        answer = response.choices[0].message.content
+        st.session_state["messages"].append({"role": "assistant", "content": answer})
+
+    # Display chat
+    for msg in st.session_state["messages"]:
+        role = "🧑 You" if msg["role"] == "user" else "🤖 Assistant"
+        st.write(f"**{role}:** {msg['content']}")

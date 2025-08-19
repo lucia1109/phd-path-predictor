@@ -40,8 +40,43 @@ sites = [
         "funding": "Yes",
         "visa_support": "Yes",
         "tag": "h2"
-    }
-    # Add more here!
+    },
+    {
+        "university": "University of Waterloo",
+        "url": "https://uwaterloo.ca/current-graduate-students/catalogs/graduate-funding-and-awards-database/sp-pasupalak-scholarship-robotics",
+        "location": "Waterloo, Canada",
+        "gre_required": "No",
+        "funding": "Yes",
+        "visa_support": "No",
+        "tag": "h1"
+    },
+    {
+        "university": "University of British Columbia",
+        "url": "https://unisa.edu.au/research/degrees/scholarships/the-william-t-southcott-scholarship/",
+        "location": "Vancouver, Canada",
+        "gre_required": "No",
+        "funding": "Yes",
+        "visa_support": "No",
+        "tag": "title"
+    },
+    {
+        "university": "University of South Australia",
+        "url": "https://careanywhere.ubc.ca/grad-training-program/how-to-apply/",
+        "location": "Australia",
+        "gre_required": "No",
+        "funding": "Yes",
+        "visa_support": "No",
+        "tag": "title"
+    },
+    {
+        "university": "University of New England",
+        "url": "https://www.une.edu.au/research/graduate-research-school/scholarships/machine-learning-modelling-to-analyse-medical-and-educational-data-including-imaging-video-and-test-based-reports",
+        "location": "Australia",
+        "gre_required": "No",
+        "funding": "Yes",
+        "visa_support": "No",
+        "tag": "title"
+    },
 ]
 
 programs = []
@@ -56,6 +91,8 @@ for site in sites:
         WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.TAG_NAME, site["tag"]))
         )
+
+        #soup.find_all("TAG", {"class": "CLASSNAME"})
 
         elements = driver.find_elements(By.TAG_NAME, site["tag"])
         print(f"Found {len(elements)} <{site['tag']}> elements")
